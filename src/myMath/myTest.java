@@ -128,8 +128,7 @@ public class myTest {
 		System.out.println(x1);
 		String a1 = c1.toString();
 		System.out.println(a1);
-		gui.drawFunctions(1,1,null,null,1);
-		
+		gui.drawFunctions("object.json");
 		
 		
 	}

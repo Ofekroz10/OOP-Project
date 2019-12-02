@@ -177,7 +177,7 @@ public class Polynom implements Polynom_able{
 	 */
 		public void substract(Polynom_able p1) 
 		{
-			Polynom_able copyP = p1.copy();
+			Polynom_able copyP = (Polynom_able) p1.copy();
 			Iterator<Monom> it= copyP.iteretor();
 			Polynom empty = new Polynom("0");
 			while(it.hasNext())

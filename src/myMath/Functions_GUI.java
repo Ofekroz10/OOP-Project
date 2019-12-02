@@ -27,18 +27,16 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 public class Functions_GUI implements functions
 {
 	public LinkedList<function> collection;
-	private final String fileName = "object.txt";
-	private final String jSonName ="object.json";
 	private GuiParams guiParams;
 
 	
 	public Functions_GUI()
 	{
 		collection = new LinkedList<function>();
-		guiParams = new GuiParams(1000,600,200,new Range(-10,10),new Range(-15,15));
+		guiParams = new GuiParams(1000,600,400,new Range(-10,10),new Range(-15,15));
 		
 	}
-	public Functions_GUI(double width,double hight,double resolution,Range x,Range y)
+	public Functions_GUI(int width,int hight,int resolution,Range x,Range y)
 	{
 		collection = new LinkedList<function>();
 		guiParams = new GuiParams(width,hight,resolution,x,y);
@@ -127,7 +125,7 @@ public class Functions_GUI implements functions
 			    
 			}
 			abc.close();
-			fromJson(jSonName);
+			
 		}
 		catch (FileNotFoundException e) {
 			throw new FileNotFoundException("file is not exist");
@@ -147,7 +145,8 @@ public class Functions_GUI implements functions
 
 				bw.write(this.collectionAsStr());
 				bw.close();
-				this.toJson(jSonName);
+				String jSonName = getJsonName(file);
+				//this.toJson(jSonName);
 				
 		}
 				
@@ -160,25 +159,31 @@ public class Functions_GUI implements functions
 		
 	}
 
+	private String getJsonName(String file) {
+		return file.substring(0,file.length()-4)+".json";
+	}
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		
-		 XYChart chart = new  XYChartBuilder().width(800).height(600).theme(ChartTheme.Matlab).build();
+		 XYChart chart = new  XYChartBuilder().width(width).height(height).theme(ChartTheme.Matlab).build();
 		 
 		 // Customize Chart
 		 int j=0;
 		 int k =0;
-		 int arrayLen = getLen(0.05);
+		 double steps = this.getResolutionForArray(rx,resolution);
+		 System.out.println(steps);
+		 int arrayLen = getLen(steps);
+		 
 		 double[][]values = new double[collection.size()][arrayLen];
 		 double[] xAsis = new double[arrayLen];
 		 boolean init = false;
 		 //chart.getStyler().setLegendPosition(LegendPosition.InsideNE);
 		for (function funcs : collection) 
 		{
-			 for(double i =guiParams.getRange_x().get_min();i<guiParams.getRange_x().get_max();i+=0.05)
+			 for(double i =guiParams.getRange_x().get_min();i<guiParams.getRange_x().get_max();i+=steps)
 			 {
 				 values[j][k] = funcs.f(i);
-				 System.out.println("("+i+","+funcs.f(i)+")");
+				 
 				 if(!init)
 					 xAsis[k] = i;
 				 k++;
@@ -202,7 +207,17 @@ public class Functions_GUI implements functions
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
+		try {
+			fromJson(json_file);
+			this.drawFunctions(this.guiParams.getWidth(),this.guiParams.getHight(),this.guiParams.getRange_x(),this.guiParams.getRange_y(),this.guiParams.getResolution());
+		}
+		catch(IOException e)
+		{
+			System.out.println(json_file +" do not exist");
+		}
+		
+		
+		
 		
 	}
 	
@@ -237,7 +252,7 @@ public class Functions_GUI implements functions
 			Gson gson = new Gson();
 			JsonReader reader = new JsonReader(new FileReader(filename));
 			GuiParams reviews = gson.fromJson(reader, GuiParams.class);
-			System.out.println(reviews.toString());
+			this.guiParams = reviews;
 		}
 				
 		catch(FileNotFoundException  e)
@@ -259,6 +274,17 @@ public class Functions_GUI implements functions
 		}
 		return count;
 	}
-	
+	public double getResolutionForArray(Range range_x,int res) {
+		double x1 = range_x.get_min();
+		double x2 = range_x.get_max();
+		double x = 0;
+		if(x2>=0&&x1>=0)
+			x= (x2-x1);
+		else if(x2>=0&&x1<0)
+			x= (x2+Math.abs(x1));
+		else
+			x=( Math.abs(x1)-Math.abs(x2));
+		return x/res;
+	}
 	
 }
