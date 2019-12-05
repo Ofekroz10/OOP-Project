@@ -202,7 +202,7 @@ public class Functions_GUI implements functions
 		    chart.getStyler().setXAxisMin(guiParams.getRange_x().get_min());
 		    chart.getStyler().setYAxisMax(guiParams.getRange_y().get_max());
 		    chart.getStyler().setYAxisMin(guiParams.getRange_y().get_min());
-		    chart.getStyler().setSeriesColors(getColors(20));
+		    //chart.getStyler().set
 		
 		
 		 new SwingWrapper(chart).displayChart();
@@ -210,9 +210,10 @@ public class Functions_GUI implements functions
 	}
 
 	private void drawXY(XYChart chart) {
-		chart.addSeries("X asis", new int[]{-10000,10000}, new int[] {0,0}).setMarker(SeriesMarkers.NONE);
-		chart.addSeries("Y asis", new int[]{0,0}, new int[] {-10000,10000}).setMarker(SeriesMarkers.NONE);
-	
+		XYSeries x= (XYSeries) chart.addSeries("X asis", new int[]{-10000,10000}, new int[] {0,0}).setMarker(SeriesMarkers.NONE);
+		x.setLineColor(Color.black);
+		XYSeries y =(XYSeries) chart.addSeries("Y asis", new int[]{0,0}, new int[] {-10000,10000}).setMarkerColor(Color.black);
+		y.setLineColor(Color.black);
 	}
 	private Color[] getColors(int number)
 	{

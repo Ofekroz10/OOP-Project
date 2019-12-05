@@ -102,38 +102,31 @@ public class myTest {
 		d1.plus(new Monom("2x"));
 		c1.mul(d1);
 		c1.div(new Monom("2x"));
-		Polynom p = new Polynom("-1.0x^4+2.4x^2+3.1x^0");
+		//Polynom p = new Polynom("-1.0x^4+2.4x^2+3.1x^0");
 		double x1 =c1.f(2);
-		
+		System.out.println(x1+"!!!");
 		Functions_GUI gui = new Functions_GUI();
 		//gui.add(new Polynom("x^2"));
-		/*gui.add(c1.initFromString("plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)"));
+		gui.add(c1.initFromString("plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)"));
 		gui.add(c1.initFromString("plus(div(+1.0x+1.0,mult(mult(+1.0x+3.0,+1.0x-2.0),+1.0x-4.0)),2.0)")); 
 		gui.add(c1.initFromString("div(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)"));
 		gui.add(c1.initFromString("-1.0x^4+2.4x^2+3.1"));
-		gui.add(c1.initFromString("max(max(max(max(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5" + 
+		/*gui.add(c1.initFromString("max(max(max(max(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5" + 
 				"-1.2999999999999998x+5.0),plus(div(+1.0x+1.0,mult(mult(+1.0x+3.0,+1.0x-2.0),+1.0x-4.0)),2.0)),div(plus(-" + 
 				"1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)),-1.0x^4+2.4x^2" + 
-				"+3.1),+0.1x^5-1.2999999999999998x+5.0)"));
-		gui.add(c1.initFromString("min(min(min(min(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-" + 
+				"+3.1),+0.1x^5-1.2999999999999998x+5.0)"));*/
+		/*gui.add(c1.initFromString("min(min(min(min(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-" + 
 				"1.2999999999999998x+5.0),plus(div(+1.0x+1.0,mult(mult(+1.0x+3.0,+1.0x-2.0),+1.0x-4.0)),2.0)),div(plus(-" + 
 				"1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)),-1.0x^4+2.4x^2" + 
-				"+3.1),+0.1x^5-1.2999999999999998x+5.0)"));
-		//gui.add(c1.initFromString("plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)"));
-		//gui.add(new Monom(3,2));
-		//gui.add(new ComplexFunction(new Polynom("2x")));*/
-		//gui.saveToFile("object.txt");
-		//gui.initFromFile("object.txt");
+				"+3.1),+0.1x^5-1.2999999999999998x+5.0)"));*/
+		
+		gui.saveToFile("object.txt");
+		gui.initFromFile("object.txt");
 		System.out.println(gui.collection);
 		System.out.println(x1);
 		String a1 = c1.toString();
-		gui.add(c1.initFromString("none(3x^2+4-2x^3)"));
-		System.out.println(a1);
-		gui.drawFunctions("object.json");
-		System.out.println(c1.initFromString("plus(2.001x,x)").equals(new Monom("3x")));
 		
-		Polynom p4 = new Polynom("3x^2+220x+2");
-		System.out.println("The root between [-90,-20] is: " +p4.root(-90,-20,Monom.EPSILON));
+		gui.drawFunctions("object.json");
 	}
 
 }
