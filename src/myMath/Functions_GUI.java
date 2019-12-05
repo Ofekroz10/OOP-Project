@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Random;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -16,6 +18,7 @@ import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
+import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.style.Styler.ChartTheme;
 import org.knowm.xchart.style.Styler.LegendPosition;
 import org.knowm.xchart.style.markers.SeriesMarkers;
@@ -166,7 +169,7 @@ public class Functions_GUI implements functions
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		
 		 XYChart chart = new  XYChartBuilder().width(width).height(height).theme(ChartTheme.Matlab).build();
-		 
+		 drawXY(chart);
 		 // Customize Chart
 		 int j=0;
 		 int k =0;
@@ -199,12 +202,29 @@ public class Functions_GUI implements functions
 		    chart.getStyler().setXAxisMin(guiParams.getRange_x().get_min());
 		    chart.getStyler().setYAxisMax(guiParams.getRange_y().get_max());
 		    chart.getStyler().setYAxisMin(guiParams.getRange_y().get_min());
+		    chart.getStyler().setSeriesColors(getColors(20));
 		
 		
 		 new SwingWrapper(chart).displayChart();
 		
 	}
 
+	private void drawXY(XYChart chart) {
+		chart.addSeries("X asis", new int[]{-10000,10000}, new int[] {0,0}).setMarker(SeriesMarkers.NONE);
+		chart.addSeries("Y asis", new int[]{0,0}, new int[] {-10000,10000}).setMarker(SeriesMarkers.NONE);
+	
+	}
+	private Color[] getColors(int number)
+	{
+		Color[] colors = new Color[number];
+		colors[0] = Color.black;
+		colors[1] = Color.black;
+		Random rand = new Random(255);
+		for (int i = 2; i < number; i++) {
+			colors[i] =new Color(new Random().nextInt(256),new Random().nextInt(256),new Random().nextInt(256));
+		}
+		return colors;
+	}
 	@Override
 	public void drawFunctions(String json_file) {
 		try {
