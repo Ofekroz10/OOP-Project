@@ -40,12 +40,46 @@ public class ComplexFunction implements complex_function
 			break;
 			default: 
 				{op = Operation.Error;
-			System.out.println("eror, operation do not exist");
+				throw new  ArithmeticException("eror, operation do not exist");
 				}
 		}
 		
 	
 				
+	}
+	
+	
+	public ComplexFunction(Operation op,function f1, function f2)
+	{
+
+		this.opString = "none";
+		this.func1 = f1;
+
+		switch(op) {
+		case Plus: opString = "plus";
+		break;
+		case Times: opString = "mult";
+		break;
+		case  Divid: opString = "div";
+		break;
+		case Min :opString = "min";
+		break;
+		case Max: opString= "max";
+		break;
+		case Comp:opString = "comp";
+		break;
+		case None:opString = "none";
+		break;
+		default: 
+			{
+				opString = "Eror";
+				throw new  ArithmeticException("eror, operation do not exist");
+			}
+		}
+		
+		
+			
+	
 	}
 	
 	@Override
@@ -374,23 +408,16 @@ public class ComplexFunction implements complex_function
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof ComplexFunction)
+		if(o instanceof function)
 		{
-			ComplexFunction cf = (ComplexFunction)o;
-			if(getOp() == cf.getOp())
+			function comp = (function)o;
+			Range rangeCheck = new Range(-10000,10000);
+			for(double i=  (int)rangeCheck.get_min();i<rangeCheck.get_max();i+=0.22)
 			{
-				if(cf.getOp()==Operation.Divid || getOp()== Operation.Comp)
-				{
-					return this.func1.equals(cf.left()) && this.func2.equals(cf.right());
-				}
-				else
-				{
-					return( this.func1.equals(cf.left()) && this.func2.equals(cf.right()))||(this.func1.equals(cf.right())&&this.func2.equals(cf.left()));
-				}
+				if(Math.abs(this.f(i)-comp.f(i))>Monom.EPSILON)
+					return false;
 			}
-			else
-				return false;
-			
+			return true;
 		}
 		return false;
 	}

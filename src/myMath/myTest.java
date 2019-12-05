@@ -129,6 +129,7 @@ public class myTest {
 		String a1 = c1.toString();
 		System.out.println(a1);
 		gui.drawFunctions("object.json");
+		System.out.println(c1.initFromString("plus(2.001x,x)").equals(new Monom("3x")));
 		
 		
 	}

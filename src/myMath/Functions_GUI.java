@@ -251,8 +251,8 @@ public class Functions_GUI implements functions
 		try {
 			Gson gson = new Gson();
 			JsonReader reader = new JsonReader(new FileReader(filename));
-			GuiParams reviews = gson.fromJson(reader, GuiParams.class);
-			this.guiParams = reviews;
+			GuiParamsArray reviews = gson.fromJson(reader, GuiParamsArray.class);
+			this.guiParams = reviews.toGuiParams();
 		}
 				
 		catch(FileNotFoundException  e)
