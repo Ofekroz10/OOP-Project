@@ -107,7 +107,7 @@ public class myTest {
 		System.out.println(x1+"!!!");
 		Functions_GUI gui = new Functions_GUI();
 		//gui.add(new Polynom("x^2"));
-		gui.add(c1.initFromString("plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)"));
+		/*gui.add(c1.initFromString("plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)"));
 		gui.add(c1.initFromString("plus(div(+1.0x+1.0,mult(mult(+1.0x+3.0,+1.0x-2.0),+1.0x-4.0)),2.0)")); 
 		gui.add(c1.initFromString("div(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)"));
 		gui.add(c1.initFromString("-1.0x^4+2.4x^2+3.1"));
@@ -120,12 +120,13 @@ public class myTest {
 				"1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)),-1.0x^4+2.4x^2" + 
 				"+3.1),+0.1x^5-1.2999999999999998x+5.0)"));*/
 		
-		gui.saveToFile("object.txt");
+		//gui.saveToFile("object.txt");
 		gui.initFromFile("object.txt");
-		System.out.println(gui.collection);
+		//System.out.println(gui.collection);
 		System.out.println(x1);
 		String a1 = c1.toString();
-		
+	
+		//System.out.println(c.initFromString("plus(-1.0x^4+2.4x^2+3.1x^0,0.1x^5-1.2999999999999998x^1+5.0x^0)").equals(gui.collection.get(0)));
 		gui.drawFunctions("object.json");
 	}
 

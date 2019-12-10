@@ -35,4 +35,19 @@ public class Range {
 	private void set_min(double _min) {
 		this._min = _min;
 	}
+	public Range copy() {
+		return new Range(_min,_max);
+	}
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o == this)
+			return true;
+		else if(o instanceof Range)
+		{
+			Range r = (Range)o;
+			return(_min==r.get_min()&&_max==r.get_max());
+		}
+		return false;
+	}
 }

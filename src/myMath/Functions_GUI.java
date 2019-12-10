@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Random;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,7 +13,7 @@ import java.io.FileWriter;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 
-import org.knowm.xchart.QuickChart;
+
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -29,7 +28,7 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class Functions_GUI implements functions
 {
-	public LinkedList<function> collection;
+	private LinkedList<function> collection;
 	private GuiParams guiParams;
 
 	
@@ -124,6 +123,7 @@ public class Functions_GUI implements functions
 				ComplexFunction c = new ComplexFunction("plus",null,null);
 			    lines.add(line);
 			   function a  = c.initFromString(line);
+			   collection.add(a);
 			   System.out.println(a.toString());
 			    
 			}
@@ -215,17 +215,7 @@ public class Functions_GUI implements functions
 		XYSeries y =(XYSeries) chart.addSeries("Y asis", new int[]{0,0}, new int[] {-10000,10000}).setMarkerColor(Color.black);
 		y.setLineColor(Color.black);
 	}
-	private Color[] getColors(int number)
-	{
-		Color[] colors = new Color[number];
-		colors[0] = Color.black;
-		colors[1] = Color.black;
-		Random rand = new Random(255);
-		for (int i = 2; i < number; i++) {
-			colors[i] =new Color(new Random().nextInt(256),new Random().nextInt(256),new Random().nextInt(256));
-		}
-		return colors;
-	}
+	
 	@Override
 	public void drawFunctions(String json_file) {
 		try {
@@ -267,13 +257,14 @@ public class Functions_GUI implements functions
 		}
 		
 	}
-	private void fromJson(String filename) throws JsonIOException, IOException
+	public boolean fromJson(String filename) throws JsonIOException, IOException
 	{
 		try {
 			Gson gson = new Gson();
 			JsonReader reader = new JsonReader(new FileReader(filename));
 			GuiParamsArray reviews = gson.fromJson(reader, GuiParamsArray.class);
 			this.guiParams = reviews.toGuiParams();
+			return true;
 		}
 				
 		catch(FileNotFoundException  e)
@@ -306,6 +297,11 @@ public class Functions_GUI implements functions
 		else
 			x=( Math.abs(x1)-Math.abs(x2));
 		return x/res;
+	}
+	
+	public GuiParams getGUIParams()
+	{
+		return this.guiParams.copy();
 	}
 	
 }

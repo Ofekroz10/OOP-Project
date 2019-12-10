@@ -49,5 +49,21 @@ public class GuiParams
 	public void setRange_y(Range range_y) {
 		this.range_y = range_y;
 	}
+	public GuiParams copy() {
+		return new GuiParams(this.width,this.hight,this.resolution,this.getRange_x().copy(),this.getRange_y().copy());
+	}
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o == this)
+			return true;
+		else if (o instanceof GuiParams)
+		{
+			GuiParams gui = (GuiParams)o;
+			return (gui.getWidth()==width&&gui.getHight()==hight&&gui.getRange_x().equals(range_x)&&gui.getRange_y().equals(range_y));
+		}
+		return false;
+		
+	}
 	
 }
