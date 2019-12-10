@@ -1,6 +1,6 @@
 package myMath;
 
-
+import java.text.DecimalFormat;
 
 public class ComplexFunction implements complex_function
 {
@@ -9,6 +9,7 @@ public class ComplexFunction implements complex_function
 	private function func2;
 	private Operation op;
 	private String opString;
+	  private static DecimalFormat df2 = new DecimalFormat("#.#######");
 	
 	public ComplexFunction(function f1)
 	{
@@ -138,6 +139,7 @@ public class ComplexFunction implements complex_function
 	public function initFromString(String s) {
 		function f1,f2;
 		Operation o;
+		s=s.replace(" ","");
 		String oStr=new String("");
 		int start = 0;
 		
@@ -412,14 +414,24 @@ public class ComplexFunction implements complex_function
 		{
 			function comp = (function)o;
 			Range rangeCheck = new Range(-10000,10000);
-			for(double i=  (int)rangeCheck.get_min();i<rangeCheck.get_max();i+=0.22)
+			for(double i=  (int)rangeCheck.get_min();i<rangeCheck.get_max();i+=0.30)
 			{
-				if(Math.abs(this.f(i)-comp.f(i))>Monom.EPSILON)
+				if(Math.abs(foo(this.f(i))-foo(comp.f(i)))>Monom.EPSILON)
+				{
+					System.out.println(f(i));
+					System.out.println(comp.f(i));
+					System.out.println(i);
 					return false;
+				}
 			}
 			return true;
 		}
 		return false;
+	}
+	private double foo(double x)
+	{
+		int y= (int) (x/100000000);
+		return y;
 	}
 
 

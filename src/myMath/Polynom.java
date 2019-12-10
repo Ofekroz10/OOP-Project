@@ -44,7 +44,7 @@ public class Polynom implements Polynom_able{
 	private LinkedList<Monom> monoms;
 	
 	public Polynom(String s) { 
-		
+		s=s.replace(" ","");
 		LinkedList<String> monoms = getMonoms(s);
 		LinkedList<Monom> monoms1 = new LinkedList<Monom>();
 		Polynom p = new Polynom();

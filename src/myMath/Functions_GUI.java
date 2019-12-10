@@ -121,6 +121,7 @@ public class Functions_GUI implements functions
 			
 			while((line = abc.readLine()) != null) {
 				ComplexFunction c = new ComplexFunction("plus",null,null);
+				line = line.replace(" ","");
 			    lines.add(line);
 			   function a  = c.initFromString(line);
 			   collection.add(a);

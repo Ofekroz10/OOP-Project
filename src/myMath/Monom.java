@@ -92,6 +92,7 @@ public class Monom implements function{
 	 */
 	public Monom(String s) {
 		//a*x^b
+		s=s.replace(" ","");
 		char[] array = s.toCharArray();
 		
 		double x = getMekadem(array);
