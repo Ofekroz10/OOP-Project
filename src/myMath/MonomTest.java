@@ -1,52 +1,65 @@
-package myMath;
-import java.util.ArrayList;
-/**
- * This class represents a simple (naive) tester for the Monom class, 
- * Note: <br>
- * (i) The class is NOT a JUNIT - (i.e., educational reasons) - should be changed to a proper JUnit in Ex1. <br>
- * (ii) This tester should be extend in order to test ALL the methods and functionality of the Monom class.  <br>
- * (iii) Expected output:  <br>
- * *****  Test1:  *****  <br>
-0) 2.0    	isZero: false	 f(0) = 2.0  <br>
-1) -1.0x    	isZero: false	 f(1) = -1.0  <br>
-2) -3.2x^2    	isZero: false	 f(2) = -12.8  <br>
-3) 0    	isZero: true	 f(3) = 0.0  <br>
-*****  Test2:  *****  <br>
-0) 0    	isZero: true  	eq: true  <br>
-1) -1.0    	isZero: false  	eq: true  <br>
-2) -1.3x    	isZero: false  	eq: true  <br>
-3) -2.2x^2    	isZero: false  	eq: true  <br>
- */
-public class MonomTest {
-	public static void main(String[] args) {
-		test1();
-		test2();
+package Ex1Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import myMath.Monom;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
+class MonomTest {
+
+	private Monom m1,m2;
+	
+	@BeforeEach
+	void init() {
+	 m1 = new Monom(2,1);
+	 m2 = new Monom(-1,1);
 	}
-	private static void test1() {
-		System.out.println("*****  Test1:  *****");
-		String[] monoms = {"2", "-x","-3.2x^2","0"};
-		for(int i=0;i<monoms.length;i++) {
-			Monom m = new Monom(monoms[i]);
-			String s = m.toString();
-			m = new Monom(s);
-			double fx = m.f(i);
-			System.out.println(i+") "+m +"    \tisZero: "+m.isZero()+"\t f("+i+") = "+fx);
-		}
+	
+	@Test
+	void constructorGetString() {
+		Monom m3 = new Monom("2.0x^1");
+		boolean equal = m1.equals(m3);
+		assertTrue(equal,"A constructor test that gets a string");
 	}
-	private static void test2() {
-		System.out.println("*****  Test2:  *****");
-		ArrayList<Monom> monoms = new ArrayList<Monom>();
-		monoms.add(new Monom(0,5));
-		monoms.add(new Monom(-1,0));
-		monoms.add(new Monom(-1.3,1));
-		monoms.add(new Monom(-2.2,2));
+	@Test
+	void addTest() {
+		Monom expected = new Monom(1,1);
+		m1.add(m2);
+		assertEquals(expected, m1,"Test Add with two Monoms");
+	}
+	
+	@Test
+	void multipyTest() {
+		Monom expected = new Monom(-2,2);
+		m1.multipy(m2);
+		assertEquals(expected, m1,"Test multipy with two Monoms");
 		
-		for(int i=0;i<monoms.size();i++) {
-			Monom m = new Monom(monoms.get(i));
-			String s = m.toString();
-			Monom m1 = new Monom(s);
-			boolean e = m.equals(m1);
-			System.out.println(i+") "+m +"    \tisZero: "+m.isZero()+"  \teq: "+e);
-		}
 	}
+	
+	@Test
+	void toStringTest() {
+		String expected="2.0x^1";
+		String m = m1.toString();
+		assertEquals(expected, m,"Test toString fun");	
+	}
+	
+	@Test
+	void equals() {
+		Monom m3 = new Monom(m1);
+		boolean equal = m1.equals(m3);
+		assertTrue(equal);
+	}
+	
+	
+	
+	
+	
+
 }
