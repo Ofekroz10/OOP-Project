@@ -134,7 +134,7 @@ public class Functions_GUI implements functions
 				lines.add(line);
 				function a  = c.initFromString(line);
 				collection.add(a);
-				//System.out.println(a.toString());
+				System.out.println(a.toString());
 
 			}
 			abc.close();
@@ -189,7 +189,7 @@ public class Functions_GUI implements functions
 		int j=0;
 		int k =0;
 		double steps = this.getResolutionForArray(rx,resolution);
-		
+		System.out.println(steps);
 		int arrayLen = getLen(steps);
 
 		double[][]values = new double[collection.size()][arrayLen];
