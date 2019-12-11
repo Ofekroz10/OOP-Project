@@ -1,4 +1,4 @@
-package Ex1Testing;
+package Ex1Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonIOException;
 
-import myMath.*;
+import Ex1.*;
 
 class FunctionGuiTest {
 	private Functions_GUI fg;
