@@ -1,10 +1,10 @@
-package Ex1Testing;
+package Ex1Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import myMath.Monom;
+import Ex1.Monom;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
