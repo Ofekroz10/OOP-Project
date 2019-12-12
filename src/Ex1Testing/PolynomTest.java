@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import myMath.Polynom;
+import Ex1.Polynom;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
