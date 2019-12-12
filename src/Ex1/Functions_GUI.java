@@ -256,6 +256,7 @@ public class Functions_GUI implements functions
 
 
 	}
+
 	/*
 	 * return the collection as string
 	 */

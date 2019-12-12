@@ -33,6 +33,8 @@ public class ComplexFunction implements complex_function
 		break;
 		case "mult": op = Operation.Times;
 		break;
+		case "mul": op = Operation.Times;
+		break;
 		case  "div": op = Operation.Divid;
 		break;
 		case "min" :op = Operation.Min;
@@ -212,6 +214,7 @@ public class ComplexFunction implements complex_function
 			}
 			catch(Exception e1)
 			{
+				System.out.println(e1);
 				System.out.println("in correct string from file");
 				return null;
 			}
@@ -249,6 +252,8 @@ public class ComplexFunction implements complex_function
 		case "plus": return Operation.Plus;
 
 		case "mult": return Operation.Times;
+		
+		case "mul": return Operation.Times;
 
 		case  "div": return Operation.Divid;
 

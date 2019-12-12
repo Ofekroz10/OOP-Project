@@ -125,7 +125,6 @@ public class myTest {
 		//System.out.println(gui.collection);
 		//System.out.println(x1);
 		String a1 = c1.toString();
-	
 		//System.out.println(c.initFromString("plus(-1.0x^4+2.4x^2+3.1x^0,0.1x^5-1.2999999999999998x^1+5.0x^0)").equals(gui.collection.get(0)));
 		gui.drawFunctions("object.json");
 	}
